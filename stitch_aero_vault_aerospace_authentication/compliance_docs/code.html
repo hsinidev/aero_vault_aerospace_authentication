@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#00969f",
+                        "on-surface": "#e5e2e1",
+                        "error": "#ffb4ab",
+                        "on-background": "#e5e2e1",
+                        "on-tertiary-fixed": "#002022",
+                        "outline": "#918f99",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-container": "#8283af",
+                        "on-surface-variant": "#c8c5cf",
+                        "on-primary-fixed-variant": "#42436b",
+                        "tertiary-fixed": "#7df4ff",
+                        "tertiary-fixed-dim": "#00dbe9",
+                        "surface-dim": "#131313",
+                        "background": "#131313",
+                        "secondary-fixed": "#e3e2e0",
+                        "surface-container-highest": "#353534",
+                        "primary-fixed-dim": "#c2c2f2",
+                        "inverse-primary": "#5a5b84",
+                        "surface-bright": "#393939",
+                        "surface-container-high": "#2a2a2a",
+                        "on-primary": "#2b2d53",
+                        "secondary-container": "#464746",
+                        "on-primary-fixed": "#16173d",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-tint": "#c2c2f2",
+                        "surface-container": "#201f1f",
+                        "surface-container-low": "#1c1b1b",
+                        "on-secondary-fixed": "#1b1c1b",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-fixed": "#e1e0ff",
+                        "on-secondary-container": "#b5b5b3",
+                        "on-secondary-fixed-variant": "#464746",
+                        "secondary-fixed-dim": "#c7c6c4",
+                        "primary": "#c2c2f2",
+                        "outline-variant": "#47464e",
+                        "surface-variant": "#353534",
+                        "secondary": "#c7c6c4",
+                        "inverse-on-surface": "#313030",
+                        "tertiary": "#00dbe9",
+                        "on-tertiary": "#00363a",
+                        "error-container": "#93000a",
+                        "surface": "#131313",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#004f54",
+                        "tertiary-container": "#002427",
+                        "on-secondary": "#303130",
+                        "primary-container": "#1a1b41"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin": "32px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "code-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["JetBrains Mono"],
+                        "headline-md": ["JetBrains Mono"],
+                        "headline-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "code-sm": ["11px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .industrial-card {
+            background-color: #1a1b41; /* primary-container approx */
+            box-shadow: inset 2px 2px 4px rgba(0,0,0,0.5), inset -1px -1px 2px rgba(255,255,255,0.05);
+            border: 2px solid #47464e;
+        }
+        .verification-glow {
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+            border: 2px solid #00dbe9;
+        }
+        .heavy-border { border-width: 2px; }
+        .inner-bevel:active { box-shadow: inset 2px 2px 4px rgba(0,0,0,0.8); }
+        .terminal-scroll::-webkit-scrollbar { width: 4px; }
+        .terminal-scroll::-webkit-scrollbar-track { background: #0e0e0e; }
+        .terminal-scroll::-webkit-scrollbar-thumb { background: #47464e; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen font-body-md flex flex-col">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-margin py-4 docked full-width top-0 bg-background dark:bg-background border-b-2 border-outline-variant sticky z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="security">security</span>
+<h1 class="font-headline-sm text-headline-sm font-bold tracking-tighter text-secondary">AERO-VAULT</h1>
+</div>
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-secondary hover:bg-surface-variant p-2 transition-all active:scale-95" data-icon="settings">settings</button>
+</div>
+</header>
+<main class="flex-grow px-margin py-8 max-w-container-max mx-auto w-full pb-32">
+<!-- Dashboard Header & Actions -->
+<section class="mb-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Compliance Docs</h2>
+<p class="font-body-lg text-on-surface-variant max-w-2xl">Airworthiness directives, manufacturing specs, and blockchain-verified inspection logs for fleet AV-900 series.</p>
+</div>
+<div class="flex items-center gap-2 font-label-md text-label-md text-tertiary">
+<span class="w-3 h-3 bg-tertiary rounded-full animate-pulse"></span>
+                    BLOCKCHAIN CONNECTED
+                </div>
+</div>
+</section>
+<!-- Search & Filters -->
+<section class="mb-10 grid grid-cols-1 md:grid-cols-12 gap-4">
+<div class="md:col-span-8 relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full bg-surface-container-lowest border-2 border-outline-variant py-4 pl-12 pr-4 font-label-md text-label-md text-on-surface focus:border-tertiary focus:ring-0 outline-none transition-colors" placeholder="SEARCH REGISTRY..." type="text"/>
+</div>
+<div class="md:col-span-2">
+<button class="w-full h-full bg-surface-container border-2 border-outline-variant flex items-center justify-center gap-2 font-label-md text-label-md hover:bg-secondary hover:text-background transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="priority_high">priority_high</span>
+                    PRIORITY
+                </button>
+</div>
+<div class="md:col-span-2">
+<button class="w-full h-full bg-surface-container border-2 border-outline-variant flex items-center justify-center gap-2 font-label-md text-label-md hover:bg-secondary hover:text-background transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+                    DATE
+                </button>
+</div>
+</section>
+<!-- Document Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Doc Card 1 -->
+<div class="industrial-card p-6 flex flex-col group hover:border-secondary transition-all">
+<div class="flex justify-between items-start mb-6">
+<span class="font-code-sm text-code-sm text-outline-variant bg-surface-container-lowest px-2 py-1">CERT-8829-X</span>
+<div class="verification-glow bg-tertiary-container px-3 py-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-tertiary" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-label-md text-tertiary">VERIFIED</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Airworthiness Certificate</h3>
+<p class="font-body-md text-on-surface-variant mb-6 line-clamp-2">Annual airframe integrity validation for AV-902 serial hull. Verified by Global Aviation Authority.</p>
+<div class="mt-auto pt-6 border-t border-outline-variant flex justify-between items-center">
+<div class="flex flex-col">
+<span class="font-code-sm text-code-sm text-outline">ISSUE DATE</span>
+<span class="font-label-md text-label-md text-secondary">2024-05-12</span>
+</div>
+<button class="bg-transparent border-2 border-secondary text-secondary font-label-md text-label-md px-4 py-2 hover:bg-secondary hover:text-background transition-all active:scale-95">DOWNLOAD</button>
+</div>
+</div>
+<!-- Doc Card 2 -->
+<div class="industrial-card p-6 flex flex-col group hover:border-secondary transition-all">
+<div class="flex justify-between items-start mb-6">
+<span class="font-code-sm text-code-sm text-outline-variant bg-surface-container-lowest px-2 py-1">INSP-990-A</span>
+<div class="verification-glow bg-tertiary-container px-3 py-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-tertiary" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-label-md text-tertiary">VERIFIED</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Hull Ultrasonic Scan</h3>
+<p class="font-body-md text-on-surface-variant mb-6 line-clamp-2">Deep-tissue ultrasound diagnostics of the composite wing-spar assembly. Zero micro-fractures detected.</p>
+<div class="mt-auto pt-6 border-t border-outline-variant flex justify-between items-center">
+<div class="flex flex-col">
+<span class="font-code-sm text-code-sm text-outline">ISSUE DATE</span>
+<span class="font-label-md text-label-md text-secondary">2024-06-01</span>
+</div>
+<button class="bg-transparent border-2 border-secondary text-secondary font-label-md text-label-md px-4 py-2 hover:bg-secondary hover:text-background transition-all active:scale-95">DOWNLOAD</button>
+</div>
+</div>
+<!-- Doc Card 3 (Warning State) -->
+<div class="industrial-card p-6 flex flex-col group border-error/50 hover:border-error transition-all">
+<div class="flex justify-between items-start mb-6">
+<span class="font-code-sm text-code-sm text-outline-variant bg-surface-container-lowest px-2 py-1">SPEC-001-M</span>
+<div class="bg-error-container px-3 py-1 flex items-center gap-2 border-2 border-error">
+<span class="material-symbols-outlined text-[14px] text-error" data-icon="warning">warning</span>
+<span class="font-label-md text-label-md text-error">CRITICAL</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Engine Mount Specs</h3>
+<p class="font-body-md text-on-surface-variant mb-6 line-clamp-2">Manufacturing blueprints for titanium mount brackets. Revision required for 2025 compliance.</p>
+<div class="mt-auto pt-6 border-t border-outline-variant flex justify-between items-center">
+<div class="flex flex-col">
+<span class="font-code-sm text-code-sm text-outline">EXPIRES</span>
+<span class="font-label-md text-label-md text-error">2024-12-31</span>
+</div>
+<button class="bg-transparent border-2 border-secondary text-secondary font-label-md text-label-md px-4 py-2 hover:bg-secondary hover:text-background transition-all active:scale-95">UPDATE</button>
+</div>
+</div>
+<!-- Doc Card 4 -->
+<div class="industrial-card p-6 flex flex-col group hover:border-secondary transition-all">
+<div class="flex justify-between items-start mb-6">
+<span class="font-code-sm text-code-sm text-outline-variant bg-surface-container-lowest px-2 py-1">AUDIT-554</span>
+<div class="verification-glow bg-tertiary-container px-3 py-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-tertiary" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-label-md text-tertiary">VERIFIED</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Avionics Audit Log</h3>
+<p class="font-body-md text-on-surface-variant mb-6 line-clamp-2">Complete history of flight control software patches and hardware redundancies. Hash chain validated.</p>
+<div class="mt-auto pt-6 border-t border-outline-variant flex justify-between items-center">
+<div class="flex flex-col">
+<span class="font-code-sm text-code-sm text-outline">ISSUE DATE</span>
+<span class="font-label-md text-label-md text-secondary">2024-05-30</span>
+</div>
+<button class="bg-transparent border-2 border-secondary text-secondary font-label-md text-label-md px-4 py-2 hover:bg-secondary hover:text-background transition-all active:scale-95">DOWNLOAD</button>
+</div>
+</div>
+<!-- Image/Visual Anchor -->
+<div class="lg:col-span-2 industrial-card overflow-hidden relative min-h-[240px]">
+<img alt="Aerospace component closeup" class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-overlay" data-alt="A detailed, close-up shot of an aerospace-grade turbine engine component made of polished brushed aluminum and steel. The lighting is cold and industrial, casting sharp shadows that highlight the precision-milled edges and complex mechanical assembly. The aesthetic is futuristic and high-tech, with a color palette of deep navy, silver, and subtle cyan glows reflecting off the metallic surfaces, evoking a sense of absolute structural integrity and engineering excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTSR17TGSTuD-laqVU3y9wsTmzvvhzgWFMmI1AzhOCvt5dY2XwwQ9xXQx6pDIaysw2EhF4CpFPMsKZe4FYeBcMny2CwHkx4CyFMDlK0Av8tfCuZMDhHtLdZWSy35--1-GJz3e92a-CNBdOla5MTtFePaGVyzYZk_bqoKwb0ashSwlQV3tw2Ez4zEUpMCs48hUHxTej5gvII67Ws7v0BfTA6qjO8AMOlkm1tjwkSp_S2TMP8yInYBK3jNNOH8iY77hp2VPEBG3jgo0L"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent flex flex-col justify-end p-8">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">System Health: Nominal</h4>
+<p class="font-body-md text-on-surface-variant max-w-lg">All critical documentation has been cross-referenced against the immutability ledger. No tampering detected.</p>
+</div>
+</div>
+</div>
+<!-- Terminal Console -->
+<div class="mt-12 bg-surface-container-lowest border-2 border-outline-variant p-4 font-code-sm text-code-sm text-tertiary/70 h-32 overflow-y-auto terminal-scroll">
+<div class="flex gap-4">
+<span class="text-outline">[2024-06-05 14:22:11]</span>
+<span>SYSTEM INIT: BLOCKCHAIN NODE SYNCED WITH AERO-VAULT CORE...</span>
+</div>
+<div class="flex gap-4">
+<span class="text-outline">[2024-06-05 14:22:15]</span>
+<span>VERIFYING HASH: 0x82f...a1c (Airworthiness Certificate) -&gt; VALID</span>
+</div>
+<div class="flex gap-4">
+<span class="text-outline">[2024-06-05 14:22:18]</span>
+<span>FETCHING NEW DIRECTIVES FROM GLOBAL AVIATION LEDGER...</span>
+</div>
+<div class="flex gap-4">
+<span class="text-outline">[2024-06-05 14:22:20]</span>
+<span class="text-error">ALERT: UPDATED SPEC DETECTED FOR TITANIUM MOUNTS (SPEC-001-M)</span>
+</div>
+<div class="flex gap-4">
+<span class="text-outline">[2024-06-05 14:22:25]</span>
+<span>IDLE: MONITORING FOR COMPLIANCE UPDATES...</span>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest border-t-2 border-outline-variant font-label-md text-label-md">
+<a class="flex flex-col items-center justify-center text-on-surface-variant pt-2 pb-4 hover:text-secondary" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span>Verify</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant pt-2 pb-4 hover:text-secondary" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="account_tree">account_tree</span>
+<span>Ledger</span>
+</a>
+<a class="flex flex-col items-center justify-center text-tertiary border-t-2 border-tertiary -mt-0.5 pt-2 pb-4" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="description">description</span>
+<span>Docs</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant pt-2 pb-4 hover:text-secondary" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="terminal">terminal</span>
+<span>API</span>
+</a>
+</nav>
+</body></html>

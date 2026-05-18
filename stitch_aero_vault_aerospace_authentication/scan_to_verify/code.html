@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AERO-VAULT | Part Verification</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#00969f",
+                        "on-surface": "#e5e2e1",
+                        "error": "#ffb4ab",
+                        "on-background": "#e5e2e1",
+                        "on-tertiary-fixed": "#002022",
+                        "outline": "#918f99",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-container": "#8283af",
+                        "on-surface-variant": "#c8c5cf",
+                        "on-primary-fixed-variant": "#42436b",
+                        "tertiary-fixed": "#7df4ff",
+                        "tertiary-fixed-dim": "#00dbe9",
+                        "surface-dim": "#131313",
+                        "background": "#131313",
+                        "secondary-fixed": "#e3e2e0",
+                        "surface-container-highest": "#353534",
+                        "primary-fixed-dim": "#c2c2f2",
+                        "inverse-primary": "#5a5b84",
+                        "surface-bright": "#393939",
+                        "surface-container-high": "#2a2a2a",
+                        "on-primary": "#2b2d53",
+                        "secondary-container": "#464746",
+                        "on-primary-fixed": "#16173d",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-tint": "#c2c2f2",
+                        "surface-container": "#201f1f",
+                        "surface-container-low": "#1c1b1b",
+                        "on-secondary-fixed": "#1b1c1b",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-fixed": "#e1e0ff",
+                        "on-secondary-container": "#b5b5b3",
+                        "on-secondary-fixed-variant": "#464746",
+                        "secondary-fixed-dim": "#c7c6c4",
+                        "primary": "#c2c2f2",
+                        "outline-variant": "#47464e",
+                        "surface-variant": "#353534",
+                        "secondary": "#c7c6c4",
+                        "inverse-on-surface": "#313030",
+                        "tertiary": "#00dbe9",
+                        "on-tertiary": "#00363a",
+                        "error-container": "#93000a",
+                        "surface": "#131313",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#004f54",
+                        "tertiary-container": "#002427",
+                        "on-secondary": "#303130",
+                        "primary-container": "#1a1b41"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin": "32px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "code-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["JetBrains Mono"],
+                        "headline-md": ["JetBrains Mono"],
+                        "headline-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "code-sm": ["11px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .industrial-inset {
+            box-shadow: inset 2px 2px 4px rgba(0,0,0,0.5), inset -1px -1px 2px rgba(255,255,255,0.05);
+        }
+        .verification-glow {
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+        .scan-overlay-grid {
+            background-image: 
+                linear-gradient(to right, rgba(145, 143, 153, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(145, 143, 153, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .warning-stripe {
+            background: repeating-linear-gradient(
+                45deg,
+                #FFBF00,
+                #FFBF00 10px,
+                #000000 10px,
+                #000000 20px
+            );
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-background border-b-2 border-outline-variant px-margin py-4 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">security</span>
+<h1 class="font-headline-sm text-headline-sm font-bold tracking-tighter text-secondary">AERO-VAULT</h1>
+</div>
+<button class="material-symbols-outlined text-secondary hover:bg-surface-variant p-2 rounded transition-transform active:scale-95 duration-100">settings</button>
+</header>
+<!-- Main Content: Scanner Interface -->
+<main class="flex-1 mt-16 mb-20 px-margin flex flex-col items-center">
+<!-- Scanner Viewport Compartment -->
+<div class="w-full max-w-4xl mt-8 relative aspect-video bg-surface-container-lowest border-2 border-outline-variant overflow-hidden industrial-inset">
+<!-- Simulated Camera Feed Placeholder -->
+<img class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale brightness-50" data-alt="A high-resolution macro shot of a complex aircraft turbine engine part made of brushed platinum steel. The lighting is harsh and industrial, emphasizing the metallic textures and precision engineering. The background is a dark, moody aerospace workshop with subtle deep indigo shadows and cold silver highlights. The overall aesthetic is one of technical reliability and extreme durability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcM6hD9ENcwNGICAATT_2Z4H5pE2iwotywH5wiSJMTgw8mrfEqLokPYpgCQhUTNaSUGjJdCFrASkYhR3jSixEjo34V41EpyiE4H5ZmuVNgab7467QJ8hbSe5h60ljM2e7f_kCtrpLJpv60_WimRLIeUmsoIv2kFAmoKS3DwAcCJGP8yvF9TTyb7BxwIskNp5NW3W6gljNNANKk72PTKGMx9uMWcXnMklCQo04sX0dz1ZgB0h1woLxMATudpOEeCwgCwbe66ktPEkCL"/>
+<!-- Scan Overlays -->
+<div class="absolute inset-0 scan-overlay-grid pointer-events-none"></div>
+<!-- Hex-Blockchain Overlay -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-64 h-64 border-2 border-tertiary border-opacity-50 relative animate-pulse flex items-center justify-center" style="clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);">
+<div class="absolute inset-0 border-4 border-tertiary opacity-20 bg-tertiary bg-opacity-5"></div>
+<span class="material-symbols-outlined text-tertiary text-4xl" style="font-variation-settings: 'FILL' 0;">qr_code_scanner</span>
+</div>
+</div>
+<!-- Guidance Text -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-surface-container-high px-6 py-2 border-2 border-outline-variant rounded">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Center Part in Frame</p>
+</div>
+<!-- Corners -->
+<div class="absolute top-4 left-4 w-8 h-8 border-t-4 border-l-4 border-secondary"></div>
+<div class="absolute top-4 right-4 w-8 h-8 border-t-4 border-r-4 border-secondary"></div>
+<div class="absolute bottom-4 left-4 w-8 h-8 border-b-4 border-l-4 border-secondary"></div>
+<div class="absolute bottom-4 right-4 w-8 h-8 border-b-4 border-r-4 border-secondary"></div>
+</div>
+<!-- Status Dashboard: Bento Layout -->
+<div class="w-full max-w-4xl mt-gutter grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Active Scan Status -->
+<div class="md:col-span-8 bg-primary-container border-2 border-primary-fixed-dim p-6 relative overflow-hidden flex items-center justify-between">
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md text-primary opacity-70 uppercase">Transaction Status</span>
+<h2 class="font-headline-md text-headline-md text-primary">Authenticating...</h2>
+<p class="font-code-sm text-code-sm text-primary opacity-60">TX_ID: 0x82...A4FB</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex flex-col items-end">
+<span class="text-tertiary font-bold font-label-md">LIVE CONNECTION</span>
+<div class="h-1 w-24 bg-surface-container-highest mt-1">
+<div class="h-full bg-tertiary w-3/4 shadow-[0_0_8px_rgba(0,219,233,1)]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Action Card -->
+<div class="md:col-span-4 bg-surface-container-low border-2 border-outline-variant p-6 flex flex-col justify-between hover:bg-secondary group transition-colors cursor-pointer">
+<span class="font-label-md text-label-md text-on-surface-variant group-hover:text-background uppercase">Manual Entry</span>
+<span class="material-symbols-outlined text-4xl text-on-surface group-hover:text-background mt-4">keyboard</span>
+</div>
+<!-- Results Bento Cards -->
+<div class="md:col-span-4 bg-surface-container-highest border-2 border-outline-variant p-6 industrial-inset">
+<div class="flex justify-between items-start mb-4">
+<span class="font-code-sm text-code-sm bg-background px-2 py-1 border border-outline-variant">ID: AV-709</span>
+<span class="material-symbols-outlined text-tertiary verification-glow rounded-full">verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Compressor Blade</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Batch: 2024-Q3-MARS</p>
+<div class="mt-4 pt-4 border-t border-outline-variant">
+<span class="text-tertiary font-bold text-label-md uppercase tracking-tighter">Verified Immutability</span>
+</div>
+</div>
+<div class="md:col-span-4 bg-surface-container-highest border-2 border-outline-variant p-6 industrial-inset">
+<div class="flex justify-between items-start mb-4">
+<span class="font-code-sm text-code-sm bg-background px-2 py-1 border border-outline-variant text-error">ID: AV-221</span>
+<span class="material-symbols-outlined text-error">warning</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Fuel Nozzle</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Alert: Mismatched Ledger Hash</p>
+<div class="mt-4 w-full h-2 warning-stripe opacity-40"></div>
+</div>
+<div class="md:col-span-4 bg-background border-2 border-outline-variant p-6 flex flex-col justify-center items-center gap-4 text-center border-dashed">
+<span class="material-symbols-outlined text-4xl text-outline">history</span>
+<p class="font-label-md text-label-md text-outline">View Previous Verification Logs</p>
+</div>
+</div>
+<!-- Terminal Console Section -->
+<div class="w-full max-w-4xl mt-gutter bg-surface-container-lowest border-2 border-outline-variant p-4 font-code-sm text-code-sm text-on-tertiary-container industrial-inset">
+<div class="flex gap-2 items-center mb-2 border-b border-outline-variant pb-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="uppercase tracking-widest font-bold">Terminal Output - Blockchain Sync</span>
+</div>
+<div class="space-y-1 opacity-80 h-24 overflow-y-auto">
+<p>[14:22:01] Initializing cryptographic handshake...</p>
+<p>[14:22:02] Connected to node: aerospace-mainnet-04</p>
+<p>[14:22:03] Fetching part manifest hash for ID: AV-709</p>
+<p class="text-tertiary">[14:22:04] MATCH FOUND: 0x9f23...d3e1 - Integrity 100%</p>
+<p>[14:22:05] Awaiting secondary confirmation from auditor-vault-alpha</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest border-t-2 border-outline-variant">
+<a class="flex flex-col items-center justify-center text-tertiary border-t-2 border-tertiary -mt-0.5 pt-2 pb-4 w-full" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">qr_code_scanner</span>
+<span class="font-label-md text-label-md">Verify</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant pt-2 pb-4 w-full hover:text-secondary" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="font-label-md text-label-md">Ledger</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant pt-2 pb-4 w-full hover:text-secondary" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md text-label-md">Docs</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant pt-2 pb-4 w-full hover:text-secondary" href="#">
+<span class="material-symbols-outlined">terminal</span>
+<span class="font-label-md text-label-md">API</span>
+</a>
+</nav>
+</body></html>

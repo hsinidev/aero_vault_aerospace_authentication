@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AERO-VAULT | API Management Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#00969f",
+                        "on-surface": "#e5e2e1",
+                        "error": "#ffb4ab",
+                        "on-background": "#e5e2e1",
+                        "on-tertiary-fixed": "#002022",
+                        "outline": "#918f99",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-container": "#8283af",
+                        "on-surface-variant": "#c8c5cf",
+                        "on-primary-fixed-variant": "#42436b",
+                        "tertiary-fixed": "#7df4ff",
+                        "tertiary-fixed-dim": "#00dbe9",
+                        "surface-dim": "#131313",
+                        "background": "#131313",
+                        "secondary-fixed": "#e3e2e0",
+                        "surface-container-highest": "#353534",
+                        "primary-fixed-dim": "#c2c2f2",
+                        "inverse-primary": "#5a5b84",
+                        "surface-bright": "#393939",
+                        "surface-container-high": "#2a2a2a",
+                        "on-primary": "#2b2d53",
+                        "secondary-container": "#464746",
+                        "on-primary-fixed": "#16173d",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-tint": "#c2c2f2",
+                        "surface-container": "#201f1f",
+                        "surface-container-low": "#1c1b1b",
+                        "on-secondary-fixed": "#1b1c1b",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-fixed": "#e1e0ff",
+                        "on-secondary-container": "#b5b5b3",
+                        "on-secondary-fixed-variant": "#464746",
+                        "secondary-fixed-dim": "#c7c6c4",
+                        "primary": "#c2c2f2",
+                        "outline-variant": "#47464e",
+                        "surface-variant": "#353534",
+                        "secondary": "#c7c6c4",
+                        "inverse-on-surface": "#313030",
+                        "tertiary": "#00dbe9",
+                        "on-tertiary": "#00363a",
+                        "error-container": "#93000a",
+                        "surface": "#131313",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#004f54",
+                        "tertiary-container": "#002427",
+                        "on-secondary": "#303130",
+                        "primary-container": "#1a1b41"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin": "32px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "code-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["JetBrains Mono"],
+                        "headline-md": ["JetBrains Mono"],
+                        "headline-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "code-sm": ["11px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .recessed-plate {
+            background-color: #1a1b41; /* Primary Container / Deep Indigo */
+            box-shadow: inset 2px 2px 4px rgba(0,0,0,0.5), inset -1px -1px 2px rgba(255,255,255,0.05);
+            border: 2px solid #47464e; /* Outline Variant */
+        }
+        .heavy-action-btn {
+            border: 2px solid #c7c6c4; /* Platinum Silver / Secondary */
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .heavy-action-btn:active {
+            transform: scale(0.95);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .heavy-action-btn:hover {
+            background-color: #c7c6c4;
+            color: #131313;
+        }
+        .verification-glow {
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+            border: 2px solid #00dbe9; /* Tertiary / Cyan */
+        }
+        .terminal-bg {
+            background: linear-gradient(180deg, #0e0e0e 0%, #131313 100%);
+        }
+        .warning-stripe {
+            background: repeating-linear-gradient(
+                45deg,
+                #FFBF00,
+                #FFBF00 10px,
+                #000 10px,
+                #000 20px
+            );
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md selection:bg-tertiary selection:text-on-tertiary min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-margin py-4 docked full-width top-0 bg-background dark:bg-background border-b-2 border-outline-variant z-50 fixed">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary dark:text-secondary" data-icon="security">security</span>
+<h1 class="font-headline-sm text-headline-sm font-bold tracking-tighter text-secondary dark:text-secondary">AERO-VAULT</h1>
+</div>
+<button class="material-symbols-outlined text-secondary dark:text-secondary p-2 rounded-full hover:bg-surface-variant transition-transform active:scale-95 duration-100" data-icon="settings">settings</button>
+</header>
+<main class="pt-24 px-gutter max-w-lg mx-auto space-y-6">
+<!-- Live Traffic Status Bar -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-end px-1">
+<span class="font-label-md text-label-md text-on-surface-variant">NODE_TRAFFIC_LIVE</span>
+<span class="font-code-sm text-code-sm text-tertiary flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                    SYNCED: 100%
+                </span>
+</div>
+<div class="h-6 w-full bg-surface-container-highest border-2 border-outline-variant relative overflow-hidden">
+<div class="absolute inset-y-0 left-0 bg-tertiary/20 border-r-2 border-tertiary" style="width: 78%;"></div>
+<div class="absolute inset-0 flex items-center justify-between px-3">
+<span class="font-code-sm text-code-sm text-on-surface opacity-50">TX_LOAD</span>
+<span class="font-code-sm text-code-sm text-on-surface font-bold">2.4k req/sec</span>
+</div>
+</div>
+</div>
+<!-- API Key Management Section -->
+<section class="space-y-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="vpn_key">vpn_key</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">AUTH_CREDENTIALS</h2>
+</div>
+<div class="recessed-plate p-5 space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1 uppercase">PRODUCTION_KEY</p>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">VAULT_PRD_49x2...99KL</p>
+</div>
+<div class="verification-glow bg-tertiary/10 px-2 py-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-tertiary text-xs" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-[10px] text-tertiary">SECURE</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="border-l-2 border-outline-variant pl-3">
+<p class="font-code-sm text-code-sm text-on-surface-variant">ISSUED</p>
+<p class="font-label-md text-label-md text-on-surface">2023.10.12</p>
+</div>
+<div class="border-l-2 border-outline-variant pl-3">
+<p class="font-code-sm text-code-sm text-on-surface-variant">ROTATION</p>
+<p class="font-label-md text-label-md text-on-surface">IN 42 DAYS</p>
+</div>
+</div>
+<button class="heavy-action-btn w-full py-3 bg-transparent text-secondary font-label-md text-label-md flex items-center justify-center gap-2 uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm" data-icon="refresh">refresh</span>
+                    Regenerate Key
+                </button>
+</div>
+</section>
+<!-- Metrics Grid -->
+<section class="grid grid-cols-2 gap-4">
+<div class="recessed-plate p-4 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-1 bg-outline-variant/30 font-code-sm text-[8px]">MTR_01</div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-2 uppercase">Integrity</p>
+<p class="font-headline-md text-headline-md text-tertiary font-bold">99.98%</p>
+<div class="mt-2 h-1 bg-surface-container-highest w-full overflow-hidden">
+<div class="bg-tertiary h-full" style="width: 99.98%;"></div>
+</div>
+</div>
+<div class="recessed-plate p-4 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-1 bg-outline-variant/30 font-code-sm text-[8px]">MTR_02</div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-2 uppercase">Latency</p>
+<p class="font-headline-md text-headline-md text-secondary font-bold">14ms</p>
+<div class="mt-2 h-1 bg-surface-container-highest w-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 30%;"></div>
+</div>
+</div>
+</section>
+<!-- Documentation Links (Asymmetric Layout) -->
+<section class="space-y-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="terminal">terminal</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface uppercase">Technical Docs</h2>
+</div>
+<div class="flex flex-col gap-3">
+<a class="group flex items-center justify-between p-4 border-2 border-outline-variant bg-surface-container hover:bg-secondary hover:text-surface-dim transition-all active:scale-[0.98]" href="#">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold uppercase">Rest API Schema</span>
+<span class="font-code-sm text-code-sm opacity-60">v4.2-STABLE / JSON</span>
+</div>
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<div class="grid grid-cols-2 gap-3">
+<a class="p-4 border-2 border-outline-variant bg-surface-container hover:border-tertiary flex flex-col gap-2 transition-all" href="#">
+<span class="material-symbols-outlined text-tertiary" data-icon="book">book</span>
+<span class="font-label-md text-label-md font-bold uppercase">SDK Guide</span>
+</a>
+<a class="p-4 border-2 border-outline-variant bg-surface-container hover:border-error flex flex-col gap-2 transition-all" href="#">
+<span class="material-symbols-outlined text-error" data-icon="bug_report">bug_report</span>
+<span class="font-label-md text-label-md font-bold uppercase">Audit Logs</span>
+</a>
+</div>
+</div>
+</section>
+<!-- System Console Output -->
+<section class="space-y-2">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Real-time Stream</span>
+<span class="font-code-sm text-code-sm text-error flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-error rounded-full animate-pulse"></span> RECORDING
+                </span>
+</div>
+<div class="terminal-bg border-2 border-outline-variant p-4 font-code-sm text-code-sm text-on-surface-variant space-y-1 min-h-[120px]">
+<p><span class="text-secondary">[14:22:01]</span> <span class="text-tertiary">AUTH_REQ</span> - Origin: 192.168.1.1 - <span class="text-primary">ACCEPTED</span></p>
+<p><span class="text-secondary">[14:22:04]</span> <span class="text-tertiary">BC_SYNC</span> - Block #4,192,021 confirmed</p>
+<p><span class="text-secondary">[14:22:12]</span> <span class="text-tertiary">VAULT_UP</span> - Integrity check: <span class="text-tertiary">PASS</span></p>
+<p><span class="text-secondary">[14:22:15]</span> <span class="text-tertiary">METRIC</span> - CPU Load: 12.4% | MEM: 1.2GB</p>
+<div class="w-2 h-4 bg-tertiary inline-block animate-pulse mt-1"></div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container-lowest border-t-2 border-outline-variant">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant pt-2 pb-4 hover:text-secondary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="font-label-md text-label-md mt-1">Verify</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant pt-2 pb-4 hover:text-secondary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+<span class="font-label-md text-label-md mt-1">Ledger</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant pt-2 pb-4 hover:text-secondary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-md text-label-md mt-1">Docs</span>
+</a>
+<a class="flex flex-col items-center justify-center text-tertiary dark:text-tertiary border-t-2 border-tertiary -mt-0.5 pt-2 pb-4" href="#">
+<span class="material-symbols-outlined" data-icon="terminal" style="font-variation-settings: 'FILL' 1;">terminal</span>
+<span class="font-label-md text-label-md mt-1">API</span>
+</a>
+</nav>
+</body></html>
